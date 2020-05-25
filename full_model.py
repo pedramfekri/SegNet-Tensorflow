@@ -12,13 +12,13 @@ pad = 1
 pool_size = 2
 
 n_label = 12
-img_w = 480
-img_h = 360
+img_w = 256
+img_h = 256
 
 
 def encoder():
 
-    encoder_input = tf.keras.layers.Input(shape=(360, 480, 3), name='input_encoder')
+    encoder_input = tf.keras.layers.Input(shape=(256, 256, 3), name='input_encoder')
 
     x = tf.keras.layers.Conv2D(filters=64, kernel_size=(3, 3), padding="same")(encoder_input)
     x = tf.keras.layers.BatchNormalization()(x)
@@ -128,7 +128,7 @@ def decoder():
 
 
 def autoencoder():
-    autoencoder_input = tf.keras.Input(shape=(360, 480, 3), name='img')
+    autoencoder_input = tf.keras.Input(shape=(256, 256, 3), name='img')
     encoder_model = encoder()
     decoder_model = decoder()
     encoder_img = encoder_model(autoencoder_input)
