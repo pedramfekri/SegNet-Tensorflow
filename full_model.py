@@ -135,7 +135,7 @@ def autoencoder():
     decoder_img = decoder_model(encoder_img)
     x = tf.keras.layers.Reshape((n_label, img_h * img_w), input_shape=(12, img_h, img_w))(decoder_img)
     x = tf.keras.layers.Permute((2, 1))(x)
-    autoencoder_output = tf.keras.layers.Activation('softmax')(x)
+    autoencoder_output = tf.keras.layers.Activation('softmax', name='prob')(x)
     autoencoder_model = tf.keras.Model(autoencoder_input, autoencoder_output, name='autoencoder')
     autoencoder_model.summary()
     return autoencoder_model
